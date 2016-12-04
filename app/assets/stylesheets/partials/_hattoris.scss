@@ -1,0 +1,62 @@
+.hattori_container {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  
+  padding: 10px;
+  transition: background-color 0.5s;
+  
+  &:hover {
+    background-color: $hover_color;
+    cursor: pointer;
+  }
+  
+  &:not(:first-child) {
+    border-top: solid 1px #eeeeee;
+  }
+  
+  & > *:not(:first-child) {
+    margin-left: 10px;
+  }
+  
+  .color_sample {
+    width: $hattori_thumb_size / 5;
+    height: $hattori_thumb_size;
+  }
+  
+  img {
+    width: $hattori_thumb_size;
+    height: $hattori_thumb_size;
+  }
+  
+  .category {
+    margin: 0;
+    font-size: 0.8em;
+    color: $secondary_text_color;
+  }
+  
+  .title {
+    margin-top: 6px;
+    font-size: 1.6em;
+  }
+  
+  table {
+    tr {
+      line-height: 1.7em;
+    }
+    
+    th {
+      margin-top: 50px;
+      color: $secondary_text_color;
+      font-size: 0.8em;
+      font-weight: normal;
+      text-align: left;
+    }
+  }
+
+}
+
+.hattori_detail_link {
+  
+}

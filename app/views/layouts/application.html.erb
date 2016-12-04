@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>色黒データベース</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <div id="logo">
+      <%= image_tag "logo.png" %>
+      <p>色黒データベース</p>
+    </div>
+  </header>
+  
+  <article>
+    <%= yield %>
+  </article>
+
+  <footer>
+    Ⓒ色黒データベース
+  </footer>
+
+</body>
+</html>

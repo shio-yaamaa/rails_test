@@ -1,0 +1,35 @@
+header, footer {
+  padding: 20px 40px;
+}
+
+header {
+  border-bottom: solid $divider_width $divider_color;
+  
+  #logo {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    
+    p {
+      display: inline;
+      font-size: 2em;
+      margin-left: 10px;
+    }
+    
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
+
+article {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+}
+
+footer {
+  border-top: solid $divider_width $divider_color;
+}

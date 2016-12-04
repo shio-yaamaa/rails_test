@@ -1,0 +1,24 @@
+<% @hattoris.each do |hattori| %>
+
+  <div class="hattori_container" data-detail-url="<%= hattori_path(hattori.id) %>">
+    <div class="color_sample" style="background-color: #<%= hattori.color %>;"></div>
+    <%= image_tag hattori.id.to_s + ".png" %>
+    
+    <div>
+      
+      <p class="category"><%= hattori.category.name %> - <%= date_for_show(hattori.date) %></p>
+      <p class="title"><%= hattori.title %></p>
+      
+      <% rgb = hex_to_rgb(hattori.color) %>
+      <table>
+        <tr>
+          <th>RGB</th><td><%= rgb[0].to_s + ',' + rgb[1].to_s + ',' + rgb[2].to_s %></td>
+        </tr>
+        <tr>
+          <th>色黒度</th><td><%= dark_level(rgb) %>%</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+<% end %>
