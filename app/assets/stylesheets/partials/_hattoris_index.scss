@@ -12,8 +12,8 @@
     cursor: pointer;
   }
   
-  &:not(:first-child) {
-    border-top: solid 1px #eeeeee;
+  &:not(:first-of-type) {
+    border-top: solid 1px $divider_color;
   }
   
   & > *:not(:first-child) {
@@ -50,13 +50,8 @@
       margin-top: 50px;
       color: $secondary_text_color;
       font-size: 0.8em;
-      font-weight: normal;
       text-align: left;
     }
   }
 
-}
-
-.hattori_detail_link {
-  
 }

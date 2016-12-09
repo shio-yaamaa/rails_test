@@ -20,4 +20,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: '<i class="fa fa-chevron-left"></i>'
+      next: '<i class="fa fa-chevron-right"></i>'
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "服部は見つかりませんでした"
+          one: "1件の服部"
+          other: "%{count}件の服部"
+      more_pages:
+        display_entries: "%{total}件の服部"
+# %{entry_name}

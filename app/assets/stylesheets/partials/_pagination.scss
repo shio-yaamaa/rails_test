@@ -1,0 +1,51 @@
+#pagination_container {
+  text-align: center;
+
+  .pagination {
+    display: inline-flex;
+    flex-flow: row wrap;
+    margin-top: 40px;
+    
+    a {
+      padding: 0 20px;
+      text-decoration: none;
+    }
+    
+    i {
+      background-color: purple;
+    }
+    
+    span {
+      display: block;
+      
+      border-radius: 2px;
+      border: solid 1px $divider_color;
+      
+      font-size: 1.2em;
+      line-height: 2;
+      color: $secondary_text_color;
+      
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+    }
+    
+    span:not(.current):hover {
+      background-color: gold;
+    }
+    
+    .current {
+      padding: 0 20px;
+      border: none;
+      background-color: gray !important;
+      color: white;
+      font-weight: bold;
+    }
+    
+    .prev, .next {
+      color: gray;
+    }
+  
+  }
+  
+}

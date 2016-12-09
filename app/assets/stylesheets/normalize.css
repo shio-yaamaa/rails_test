@@ -9,6 +9,14 @@
 
 /* Document
    ========================================================================== */
+   
+* {
+  box-sizing: border-box;
+}
+
+th {
+  font-weight: normal;
+}
 
 html {
   font-family: sans-serif; /* 1 */
