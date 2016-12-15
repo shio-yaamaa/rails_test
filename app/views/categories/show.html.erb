@@ -1,0 +1,7 @@
+<%= render partial: "partials/categories", locals: {categories: @categories, active_category: @active_category} %>
+
+<p><%= page_entries_info @hattoris %></p>
+
+<%= render partial: "partials/hattori", collection: @hattoris %>
+
+<div id="pagination_container"><%= paginate @hattoris %></div>

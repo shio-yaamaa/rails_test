@@ -5,11 +5,11 @@ module NameThatColor
   
   def init()
     for color in ColorName.all
-      rgb = hex_to_rgb(color.hex)
+      rgb = hex2rgb(color.hex)
       @@color_names.push({
         name: color.name,
         rgb: rgb,
-        hsl: rgb_to_hsl(rgb)
+        hsl: rgb2hsl(rgb)
       })
     end
   end
@@ -19,31 +19,31 @@ module NameThatColor
       init()
     end
   
-    hsl = rgb_to_hsl(rgb)
+    hsl = rgb2hsl(rgb)
   
-    diff = 0
-    rgb_diff = 0
-    hsl_diff = 0
+    difference = 0
+    rgb_difference = 0
+    hsl_difference = 0
   
     candidate = nil
-    candidate_diff = -1
+    candidate_difference = -1
   
     @@color_names.each do |color_name|
       if rgb == color_name[:rgb]
         return color_name[:name]
       end
   
-      rgb_diff = rgb.zip(color_name[:rgb]).inject(0) do |sum, element|
-        sum + (element[0] - element[1]) ** 2
+      rgb_difference = rgb.zip(color_name[:rgb]).inject(0) do |sum, (rgb1, rgb2)|
+        sum + (rgb1 - rgb2) ** 2
       end
-      hsl_diff = hsl.zip(color_name[:hsl]).inject(0) do |sum, element|
-        sum + (element[0] - element[1]) ** 2
+      hsl_difference = hsl.zip(color_name[:hsl]).inject(0) do |sum, (hsl1, hsl2)|
+        sum + (hsl1 - hsl2) ** 2
       end
-      diff = rgb_diff + hsl_diff * 2
+      difference = rgb_difference + hsl_difference * 2
   
-      if candidate == nil || diff < candidate_diff
+      if candidate == nil || difference < candidate_difference
         candidate = color_name
-        candidate_diff = diff
+        candidate_difference = difference
       end
     end
   

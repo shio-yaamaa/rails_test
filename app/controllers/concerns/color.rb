@@ -1,7 +1,9 @@
 module Color
   extend ActiveSupport::Concern
   
-  def hex_to_rgb(hex, is_hash = false)
+  include ColorDifference
+  
+  def hex2rgb(hex, is_hash = false)
     names = ['R', 'G', 'B']
     rgb = []
     3.times do |i|
@@ -19,7 +21,7 @@ module Color
     return rgb
   end
   
-  def rgb_to_hsv(rgb, is_hash = false)
+  def rgb2hsv(rgb, is_hash = false)
     names = ['H', 'S', 'V']
     
     rgb = rgb.map { |element| element.to_f / 255 }
@@ -61,7 +63,7 @@ module Color
   end
   
   # use only by name_that_color!
-  def rgb_to_hsl(rgb)
+  def rgb2hsl(rgb)
     rgb = rgb.map { |element| element.to_f / 255 }
     min = rgb.min
     max = rgb.max
@@ -92,47 +94,42 @@ module Color
   end
   # (100 - 100 * (0.299 * R + 0.587 * G + 0.114 * B) / 255)
   
-  # 後で修正
-  def color_diff(rgb1, rgb2)
-    (rgb1[0] - rgb2[0]) ** 2 + (rgb1[1] - rgb2[1]) ** 2 + (rgb1[2] - rgb2[2]) ** 2
-  end
-  
   def similar_color_hattoris(id, rgb)
-    color_diffs = [] # ascend {id: int, value: int}
+    color_differences = [] # ascend {id: int, value: int}
     Hattori.all.each do |hattori|
       if hattori.id != id
-        diff = color_diff(hex_to_rgb(hattori.color), rgb)
+        difference = color_difference(hex2rgb(hattori.color), rgb)
         insert_pos = 0
-        color_diffs.each do |color_diff|
-          if color_diff[:value] < diff
+        color_differences.each do |color_difference|
+          if color_difference[:value] < difference
             insert_pos += 1
           else
             break
           end
         end
-        color_diffs.insert(insert_pos, {id: hattori.id, value: diff})
+        color_differences.insert(insert_pos, {id: hattori.id, value: difference})
       end
     end
-    return color_diffs[0...5].map {|color_diff| Hattori.find(color_diff[:id])}
+    return color_differences[0...5].map {|color_difference| Hattori.find(color_difference[:id])}
   end
   
   def similar_dark_level_hattoris(id, dark_level)
-    dark_level_diffs = [] # ascend {id: int, value: int}
+    dark_level_differences = [] # ascend {id: int, value: int}
     Hattori.all.each do |hattori|
       if hattori.id != id
-        diff = (dark_level(hex_to_rgb(hattori.color)) - dark_level).abs
+        difference = (dark_level(hex2rgb(hattori.color)) - dark_level).abs
         insert_pos = 0
-        dark_level_diffs.each do |dark_level_diff|
-          if dark_level_diff[:value] < diff
+        dark_level_differences.each do |dark_level_difference|
+          if dark_level_difference[:value] < difference
             insert_pos += 1
           else
             break
           end
         end
-        dark_level_diffs.insert(insert_pos, {id: hattori.id, value: diff})
+        dark_level_differences.insert(insert_pos, {id: hattori.id, value: difference})
       end
     end
-    return dark_level_diffs[0...5].map {|dark_level_diff| Hattori.find(dark_level_diff[:id])}
+    return dark_level_differences[0...5].map {|dark_level_difference| Hattori.find(dark_level_difference[:id])}
   end
 
 end
