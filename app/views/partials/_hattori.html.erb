@@ -1,5 +1,5 @@
 <div class="hattori_container" data-detail-url="<%= hattori_path(hattori.id) %>">
-  <div class="color_sample" style="background-color: #<%= hattori.color %>;"></div>
+  <div class="color_sample" style="background-color: #<%= hattori.hex %>;"></div>
   <%= image_tag hattori.id.to_s + ".png" %>
     
   <div>
@@ -8,7 +8,7 @@
       
     <table>
       <tr>
-        <th>RGB</th><td><%= hattori.rgb.join(",") %></td>
+        <th>RGB</th><td><%= [hattori.r, hattori.g, hattori.b].join(",") %></td>
       </tr>
       <tr>
         <th>色黒度</th><td><%= hattori.dark_level.round(2) %>%</td>

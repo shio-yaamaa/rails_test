@@ -1,0 +1,1 @@
+rails runner app/batch/filename.rb

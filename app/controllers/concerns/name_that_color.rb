@@ -1,6 +1,8 @@
 module NameThatColor
   extend ActiveSupport::Concern
   
+  include Color
+  
   @@color_names = []
   
   def init()
