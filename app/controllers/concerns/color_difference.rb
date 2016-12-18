@@ -20,8 +20,6 @@ module ColorDifference
   end
   
   def scale_rgb(rgb)
-    logger.debug("rgbです")
-    logger.debug(rgb)
     rgb.map {|element| element / 255.0}
   end
   

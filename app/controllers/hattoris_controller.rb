@@ -1,40 +1,19 @@
 class HattorisController < ApplicationController
-  #include Color
   include NameThatColor
   include SimilarHattoris
+  include OrderHattoris
   
   def index
-    #logger.debug("hattori controller の index")
-    
     @categories = Category.all
-    @hattoris = Hattori.page(params[:page]).includes(:category)
     
-    #for hattori in @hattoris
-    #  hattori.rgb = hex2rgb(hattori.color)
-    #  hattori.dark_level = dark_level(hattori.rgb)
-    #end
+    @order = params[:order] == nil ? nil : params[:order].to_sym
+    @order_options = @@order_info.map {|key, value| [value[:for_display], key.to_s]}
+    
+    @hattoris = order_hattoris(Hattori, @order).page(params[:page]).includes(:category)
   end
   
   def show
-    #logger.debug("hattori controller の show")
-    
     @hattori = Hattori.find(params[:id])
-    
-    #logger.debug("保持されていたrgb↓")
-    #logger.debug(@hattori.rgb)
-    #@hattori.rgb_with_name = [
-    #  {name: "R", value: @hattori.r},
-    #  {name: "G", value: @hattori.g},
-    #  {name: "B", value: @hattori.b}
-    #]
-    #logger.debug(@hattori.rgb)
-    #rgb = hex2rgb(@hattori.color)
-    #@hattori.hsv_with_name = [
-    #  {name: "H", value: @hattori.r},
-    #  {name: "S", value: @hattori.g},
-    #  {name: "V", value: @hattori.b}
-    #]
-    #@hattori.dark_level = dark_level(rgb)
     
     rgb = [@hattori.r, @hattori.g, @hattori.b]
     

@@ -21,7 +21,7 @@ module Color
       case max
       when rgb[0]
         h = (rgb[1] - rgb[2]) / h
-        h + 6 if h < 0
+        h += 6 if h < 0
       when rgb[1]
         h = 2 + (rgb[2] - rgb[0]) / h
       when rgb[2]

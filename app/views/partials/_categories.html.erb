@@ -1,5 +1,5 @@
 <div id="category_container">
-  <div class="active">
+  <div class="<%= 'active' if active_category == nil %>">
     <p><%= link_to "全て", "/" %></p>
     <% if active_category == nil %>
       <div class="arrow"></div>
@@ -7,7 +7,7 @@
   </div>
   
   <% categories.each do |category| %>
-    <div>
+    <div class="<%= 'active' if active_category == category %>">
       <p><%= link_to category.name, category_path(category.id) %></p>
       <% if active_category == category %>
         <div class="arrow"></div>

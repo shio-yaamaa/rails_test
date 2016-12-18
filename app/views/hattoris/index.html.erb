@@ -1,4 +1,4 @@
-<%= select :page, :name, [["古い順", "old"], ["黒い順", "black"]] %>
+<%= select :page, :order, @order_options, selected: @order.to_s %>
 
 <%= render partial: "partials/categories", locals: {categories: @categories, active_category: nil} %>
 
