@@ -2,6 +2,7 @@ class HattorisController < ApplicationController
   include NameThatColor
   include SimilarHattoris
   include OrderHattoris
+  include SearchHattoris
   
   def index
     @categories = Category.all
@@ -9,7 +10,8 @@ class HattorisController < ApplicationController
     @order = params[:order] == nil ? nil : params[:order].to_sym
     @order_options = @@order_info.map {|key, value| [value[:for_display], key.to_s]}
     
-    @hattoris = order_hattoris(Hattori, @order).page(params[:page]).includes(:category)
+    @hattoris = search_hattoris(order_hattoris(Hattori, @order), params[:search])
+        .page(params[:page]).includes(:category)
   end
   
   def show

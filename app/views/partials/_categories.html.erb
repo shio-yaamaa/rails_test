@@ -1,6 +1,6 @@
 <div id="category_container">
   <div class="<%= 'active' if active_category == nil %>">
-    <p><%= link_to "全て", "/" %></p>
+    <p><%= link_to "全て", root_path(order: params[:order]) %></p>
     <% if active_category == nil %>
       <div class="arrow"></div>
     <% end %>
@@ -8,7 +8,7 @@
   
   <% categories.each do |category| %>
     <div class="<%= 'active' if active_category == category %>">
-      <p><%= link_to category.name, category_path(category.id) %></p>
+      <p><%= link_to category.name, category_path(category.id, order: params[:order]) %></p>
       <% if active_category == category %>
         <div class="arrow"></div>
       <% end %>

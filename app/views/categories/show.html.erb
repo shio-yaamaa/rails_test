@@ -1,3 +1,5 @@
+<%= render partial: "partials/hattori_list_control", locals: {order_options: @order_options, order: @order} %>
+
 <%= render partial: "partials/categories", locals: {categories: @categories, active_category: @active_category} %>
 
 <p><%= page_entries_info @hattoris %></p>

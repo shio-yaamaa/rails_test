@@ -1,4 +1,4 @@
-<%= select :page, :order, @order_options, selected: @order.to_s %>
+<%= render partial: "partials/hattori_list_control", locals: {order_options: @order_options, order: @order} %>
 
 <%= render partial: "partials/categories", locals: {categories: @categories, active_category: nil} %>
 
