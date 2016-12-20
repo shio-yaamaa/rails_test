@@ -1,0 +1,21 @@
+#hattori_list_control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  padding-bottom: 30px;
+  
+  input[type="text"] {
+    padding: 10px 5px;
+    border: solid 1px #AAA;
+    border-radius: 3px;
+  }
+  
+  input[type="submit"] {
+    padding: 10px;
+    font-family: FontAwesome;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}

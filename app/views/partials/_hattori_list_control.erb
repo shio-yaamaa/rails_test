@@ -1,3 +1,8 @@
 <div id="hattori_list_control">
+  <%= form_tag '', method: 'get' do %>
+    <%= text_field :list_control, :search, value: params[:list_control] ? params[:list_control][:search] : '', size: 30, placeholder: "服部を検索" %>
+    <%= hidden_field_tag :page , 1 %>
+    <%= submit_tag raw("&#xf002;"), name: nil %>
+  <% end %>
   <%= select :page, :order, order_options, selected: order.to_s %>
 </div>

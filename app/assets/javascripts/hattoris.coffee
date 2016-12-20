@@ -3,7 +3,7 @@ ready ->
     Turbolinks.visit $(this).data 'detailUrl'
   
   $('#page_order').on 'change', ->
-    document.location.search = addUrlParameter document.location.search, 'order', $(this).val()
+    Turbolinks.visit document.location.pathname + addUrlParameter(document.location.search, 'order', $(this).val())
 
 addUrlParameter = (locationSearch, key, value) ->
   key = encodeURIComponent key

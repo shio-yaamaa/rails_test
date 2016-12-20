@@ -10,7 +10,9 @@ class HattorisController < ApplicationController
     @order = params[:order] == nil ? nil : params[:order].to_sym
     @order_options = @@order_info.map {|key, value| [value[:for_display], key.to_s]}
     
-    @hattoris = search_hattoris(order_hattoris(Hattori, @order), params[:search])
+    search_param = params[:list_control] ? params[:list_control][:search] : nil
+    
+    @hattoris = search_hattoris(order_hattoris(Hattori, @order), search_param)
         .page(params[:page]).includes(:category)
   end
   
