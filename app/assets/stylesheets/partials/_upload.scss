@@ -1,0 +1,42 @@
+#upload_area {
+  width: 60%;
+  padding: 50px 0;
+  margin: auto;
+  text-align: center;
+  
+  border: dashed 3px $main_color;
+  
+  &.dragover {
+    background-color: $main_color_tint;
+  }
+  
+  #main_text {
+  }
+  
+  #sub_text {
+  }
+  
+  label {
+    display: inline-block;
+    
+    background-color: white;
+    border: solid 1px #AAA;
+    box-shadow: 0 2px 0 #AAA;
+    border-radius: 3px;
+  	padding: 10px;
+  	
+    cursor: pointer;
+    
+    input {
+      display: none;
+    }
+  }
+}
+
+#select_pixel {
+  canvas {
+    display: none;
+    box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.3);
+    cursor: crosshair;
+  }
+}

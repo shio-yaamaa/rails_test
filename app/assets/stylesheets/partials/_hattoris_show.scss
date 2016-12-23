@@ -30,7 +30,7 @@
   }
   
   #color_info {
-    width: 100%;
+    //width: 100%;
     
     margin: 0 0 0 20px;
     @media (max-width: 960px) {
@@ -106,7 +106,7 @@
           }
           
           #dark_level_bar {
-            background-color: $material_brown;
+            background-color: $main_color;
           }
         }
       }

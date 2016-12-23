@@ -1,7 +1,7 @@
 #category_container {
   display: flex;
   justify-content: space-around;
-  border-bottom: solid 6px brown;
+  border-bottom: solid 6px $main_color;
   overflow-x: auto;
   
   div {
@@ -31,7 +31,7 @@
       width: 0;
       height: 0;
       border: solid 15px transparent;
-      border-bottom-color: brown;
+      border-bottom-color: $main_color;
       margin: 0 auto;
     }
   }

@@ -13,6 +13,14 @@
       <%= image_tag "logo.png" %>
       <p>色黒データベース</p>
     </div>
+    <div id="menu">
+      <% path = request.path_info %>
+      <% raw_underline_class = raw(' class="underline"') %>
+      
+      <p<%= (path.include?('upload') || path.include?('compare')) ? '' : raw_underline_class %>><%= link_to '服部一覧', root_path %></p>
+      <p<%= path.include?('upload') ? raw_underline_class : '' %>><%= link_to '画像をアップロード', upload_path %></p>
+      <p<%= path.include?('compare') ? raw_underline_class : '' %>><%= link_to '色黒比較', compare_path %></p>
+    </div>
   </header>
   
   <article>
@@ -20,7 +28,7 @@
   </article>
 
   <footer>
-    このサイトのロゴとアイコン以外の画像は、全てⒸ～が著作権を有しています。
+    著作権とか
   </footer>
 
 </body>

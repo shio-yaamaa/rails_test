@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'hattoris#index'
   resources :categories, only: [:show]
   resources :hattoris, only: [:index, :show]
+  get 'upload' => 'upload#index'
+  get 'compare' => 'compare#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
