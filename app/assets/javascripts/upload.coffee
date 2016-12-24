@@ -1,8 +1,11 @@
+pixelsData = null
+
 ready ->
   
   uploadArea = $('#upload_area')
   fileInput = $('#file_input')
-  canvas = $('#select_pixel canvas')[0]
+  uploadedImageDetail = $('#uploaded_image_detail')
+  canvas = $('#uploaded_image_detail canvas')[0]
   
   uploadArea
     .on 'dragover', (event) ->
@@ -18,12 +21,16 @@ ready ->
       $(this).removeClass 'dragover'
       
       if file = validateFiles event.originalEvent.dataTransfer.files
-        displayImage(file, canvas)
+        displayImage(file, uploadedImageDetail, canvas)
         
   fileInput.on 'change', (event) ->
-    console.log 'file selected'
     if file = validateFiles this.files
-      displayImage(file, canvas)
+      displayImage(file, uploadedImageDetail, canvas)
+  
+  $(canvas).on 'click', (event) ->
+    rect = event.target.getBoundingClientRect()
+    [x, y] = [event.clientX - rect.left, event.clientY - rect.top]
+    getColorAtPixel(canvas, pixelsData, x, y)
       
 validateFiles = (files) ->
   if !files || files.length == 0
@@ -39,19 +46,23 @@ validateFiles = (files) ->
   
   return files[0]
 
-displayImage = (file, canvas) ->
+displayImage = (file, detail, canvas) ->
   # load image
   fileReader = new FileReader()
   fileReader.readAsDataURL file
   fileReader.onload = ->
     image = new Image()
     image.onload = ->
+      # show detail
+      $(detail).css 'display', 'block'
+      
+      context = canvas.getContext('2d')
+      
       # display image
-      $(canvas).css 'display', 'block'
-      [canvas.width, canvas.height] = [400, 400] #[image.width, image.height]
+      [canvas.width, canvas.height] = [400, 400]
       isLandscape = this.width >= this.height
       scale = if isLandscape then canvas.width / this.width else canvas.height / this.height
-      canvas.getContext('2d').drawImage(
+      context.drawImage(
         this,
         0,
         0,
@@ -62,4 +73,17 @@ displayImage = (file, canvas) ->
         if isLandscape then canvas.width else this.width * scale,
         if isLandscape then this.height * scale else canvas.height
       )
+      
+      # save pixels data
+      pixelsData = context.getImageData(0, 0, canvas.width, canvas.height).data
+      
     image.src = fileReader.result
+
+getColorAtPixel = (canvas, pixelsData, x, y) ->
+  [x, y] = [Math.round x, Math.round y]
+  base = (canvas.width * y + x) * 4
+  alpha = pixelsData[base + 3]
+  r = pixelsData[base + 0] + (255 - alpha)
+  g = pixelsData[base + 1] + (255 - alpha)
+  b = pixelsData[base + 2] + (255 - alpha)
+  console.log "R: #{r}, G: #{g}, B: #{b}, A: #{alpha}"

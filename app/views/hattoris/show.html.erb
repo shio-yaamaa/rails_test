@@ -2,70 +2,21 @@
 <p><%= fa_icon "folder", text: @hattori.category.name %></p>
 <p><%= fa_icon "clock-o", text: date_for_show(@hattori.date) %></p>
 
-<div id="itself">
-  <div id="basic_info">
-    <%= image_tag @hattori.id.to_s + ".png" %>
-    <p><%= @hattori.description %></p>
-  </div>
-  
-  <div id="color_info">
-    <div id="color_sample_with_text">
-      <div id="color_sample" style="background-color: #<%= @hattori.hex %>;"></div>
-      <div id="color_sample_text">
-        <p>#<%= @hattori.hex.upcase %></p>
-        <p>色名: <%= @hattori.color_name %></p>
-      </div>
-    </div>
-    
-    <table>
-      <% [rgb_for_graph([@hattori.r, @hattori.g, @hattori.b]), hsv_for_graph([@hattori.h, @hattori.s, @hattori.v])].each do |rgborhsv| %>
-        <% rgborhsv.each do |color_element| %>
-          <tr>
-            <th><%= color_element[:name] %></th>
-            <td>
-              <div class="bar_background"></div>
-              <div class="bar" id="<%= color_element[:name].downcase %>_bar" style="width: <%= color_element[:percentage] %>%;"></div>
-            </td>
-            <td><%= color_element[:value] %></td>
-          </tr>
-        <% end %>
-        <tr class="seperator"><td></td></tr>
-      <% end %>
-      <tr>
-        <th>色黒度</th>
-        <td>
-          <div class="bar_background"></div>
-          <div class="bar" id="dark_level_bar" style="width: <%= @hattori.dark_level %>%;"></div>
-        </td>
-        <td><%= @hattori.dark_level.round(2) %></td>
-      </tr>
-    </table>
-    
-  </div>
-</div>
+<%= render partial: "partials/image_detail_itself", locals: {
+  image_file_name: @hattori.id.to_s,
+  description: @hattori.description,
+  hex: @hattori.hex,
+  color_name: @hattori.color_name,
+  r: @hattori.r,
+  g: @hattori.g,
+  b: @hattori.b,
+  h: @hattori.h,
+  s: @hattori.s,
+  v: @hattori.v,
+  dark_level: @hattori.dark_level
+} %>
 
-<div id="similar_hattoris">
-  
-  <p class="sub_title">近似色の服部</p>
-  
-  <div>
-    <% @hattori.similar_color_hattoris.each do |similar_color_hattori| %>
-      <div>
-        <%= link_to image_tag(similar_color_hattori.id.to_s + ".png", {border: '0'}), "/hattoris/" + similar_color_hattori.id.to_s %>
-        <div style="background-color: #<%= similar_color_hattori.hex %>;"></div>
-      </div>
-    <% end %>
-  </div>
-  
-  <p class="sub_title">近似色黒度の服部</p>
-  
-  <div>
-    <% @hattori.similar_dark_level_hattoris.each do |similar_dark_level_hattori| %>
-      <div>
-        <%= link_to image_tag(similar_dark_level_hattori.id.to_s + ".png", {border: '0'}), "/hattoris/" + similar_dark_level_hattori.id.to_s %>
-        <div style="background-color: #<%= similar_dark_level_hattori.hex %>;"></div>
-      </div>
-    <% end %>
-  </div>
-  
-</div>
+<%= render partial: "partials/image_detail_similar_hattoris", locals: {
+  similar_color_hattoris: @hattori.similar_color_hattoris,
+  similar_dark_level_hattoris: @hattori.similar_dark_level_hattoris
+} %>

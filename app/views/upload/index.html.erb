@@ -7,10 +7,20 @@
   </label>
 </div>
 
-<div id="select_pixel">
-  <p>画像をクリックして色を採取してください</p>
-  <p>(なるべく色が均一な部分を選んでください)</p>
+<div id="uploaded_image_detail">
+  <p>画像をクリックすると、色を採取できます</p>
   
-  <canvas></canvas>
-  
+  <%= render partial: "partials/image_detail_itself", locals: {
+    image_file_name: nil,
+    description: nil,
+    hex: "456789",
+    color_name: "beautiful",
+    r: 80,
+    g: 90,
+    b: 100,
+    h: 200,
+    s: 10,
+    v: 40,
+    dark_level: 46.88
+  } %>
 </div>

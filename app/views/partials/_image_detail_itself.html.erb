@@ -1,0 +1,59 @@
+<%#
+  String image_file_name: if nill, canvas is shown
+  (String description)
+  String hex
+  String color_name
+  int r
+  int g
+  int b
+  int h
+  int s
+  int v
+  float dark_level
+%>
+
+<div id="itself">
+  <div id="basic_info">
+    <% if image_file_name %>
+      <%= image_tag "#{image_file_name}.png" %>
+      <p><%= description %></p>
+    <% else %>
+      <canvas></canvas>
+    <% end %>
+  </div>
+  
+  <div id="color_info">
+    <div id="color_sample_with_text">
+      <div id="color_sample" style="background-color: #<%= hex %>;"></div>
+      <div id="color_sample_text">
+        <p>#<%= hex.upcase %></p>
+        <p>色名: <%= color_name %></p>
+      </div>
+    </div>
+    
+    <table>
+      <% [rgb_for_graph([r, g, b]), hsv_for_graph([h, s, v])].each do |rgborhsv| %>
+        <% rgborhsv.each do |color_element| %>
+          <tr>
+            <th><%= color_element[:name] %></th>
+            <td>
+              <div class="bar_background"></div>
+              <div class="bar" id="<%= color_element[:name].downcase %>_bar" style="width: <%= color_element[:percentage] %>%;"></div>
+            </td>
+            <td><%= color_element[:value] %></td>
+          </tr>
+        <% end %>
+        <tr class="seperator"><td></td></tr>
+      <% end %>
+      <tr>
+        <th>色黒度</th>
+        <td>
+          <div class="bar_background"></div>
+          <div class="bar" id="dark_level_bar" style="width: <%= dark_level %>%;"></div>
+        </td>
+        <td><%= dark_level.round(2) %></td>
+      </tr>
+    </table>
+    
+  </div>
+</div>

@@ -34,7 +34,8 @@ header {
     
     p {
       margin: 0;
-      transition: all 0.1s;
+      transition: all 0.15s;
+      border-bottom: solid 0 $main_color;
       
       &.underline {
         border-bottom: solid 5px $main_color;

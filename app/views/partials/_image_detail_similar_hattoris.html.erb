@@ -1,0 +1,30 @@
+<%#
+  Hattori[] similar_color_hattoris
+  Hattori[] similar_dark_level_hattoris
+%>
+
+<div id="similar_hattoris">
+  
+  <p class="sub_title">近似色の服部</p>
+  
+  <div>
+    <% @hattori.similar_color_hattoris.each do |similar_color_hattori| %>
+      <div>
+        <%= link_to image_tag(similar_color_hattori.id.to_s + ".png", {border: '0'}), "/hattoris/" + similar_color_hattori.id.to_s %>
+        <div style="background-color: #<%= similar_color_hattori.hex %>;"></div>
+      </div>
+    <% end %>
+  </div>
+  
+  <p class="sub_title">近似色黒度の服部</p>
+  
+  <div>
+    <% @hattori.similar_dark_level_hattoris.each do |similar_dark_level_hattori| %>
+      <div>
+        <%= link_to image_tag(similar_dark_level_hattori.id.to_s + ".png", {border: '0'}), "/hattoris/" + similar_dark_level_hattori.id.to_s %>
+        <div style="background-color: #<%= similar_dark_level_hattori.hex %>;"></div>
+      </div>
+    <% end %>
+  </div>
+  
+</div>
