@@ -2,7 +2,7 @@
 
 <div class="hattori_container" data-detail-url="<%= hattori_path(hattori.id) %>">
   <div class="color_sample" style="background-color: #<%= hattori.hex %>;"></div>
-  <%= image_tag hattori.id.to_s + ".png" %>
+  <%= image_tag "#{hattori.id}.png" %>
     
   <div>
     <p class="category"><%= hattori.category.name %> - <%= date_for_show(hattori.date) %></p>

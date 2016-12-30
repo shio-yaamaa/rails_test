@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get 'upload' => 'upload#index'
   get 'compare' => 'compare#index'
   
+  get 'upload/get_color_info'
+  get 'upload/get_similar_hattoris'
+  get 'color_names/get_color_names'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

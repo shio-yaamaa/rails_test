@@ -4,14 +4,17 @@ module Color
   def hex2rgb(hex)
     rgb = []
     3.times do |i|
-      value = hex[i * 2, 2].to_i(16)
-      rgb.push(value)
+      rgb.push(hex[i * 2, 2].to_i(16))
     end
     return rgb
   end
   
+  def rgb2hex(rgb)
+    rgb.reduce('') {|sum, element| sum + "%02x" % element}
+  end
+  
   def rgb2hsv(rgb)
-    rgb = rgb.map { |element| element.to_f / 255 }
+    rgb = rgb.map {|element| element.to_f / 255}
     min = rgb.min
     max = rgb.max
     
@@ -57,9 +60,9 @@ module Color
   
     h = 0
     if delta > 0
-      h += (rgb[1] - rgb[2]) / delta if max == rgb[0] && max != rgb[1]
-      h += 2 + (rgb[2] - rgb[0]) / delta
-      h += 4 + (rgb[0] - rgb[1]) / delta
+      if max == rgb[0] && max != rgb[1] then h +=     (rgb[1] - rgb[2]) / delta end
+      if max == rgb[1] && max != rgb[2] then h += 2 + (rgb[2] - rgb[0]) / delta end
+      if max == rgb[2] && max != rgb[0] then h += 4 + (rgb[0] - rgb[1]) / delta end
       h /= 6
     end
   

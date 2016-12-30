@@ -1,0 +1,2 @@
+module ColorNamesHelper
+end
