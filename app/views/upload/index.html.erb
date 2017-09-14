@@ -1,26 +1,32 @@
 <div id="upload_area">
-  <p>ここに画像ファイルをドラッグ</p>
-  <p>または</p>
+  <!-- todo <p>ここに画像ファイルをドラッグ</p>
+  <p>または</p>-->
   <label for="file_input">
     ファイルを選択
     <input id="file_input" type="file" name="image" accept="image/*">
   </label>
+  <p>　<!--または--></p>
+  <%= button_tag 'カラーピッカーを使う', id: 'color_picker_button' %>
+  <div class="error_message" id="upload_validate_error"></div>
 </div>
 
 <div id="uploaded_image_detail">
   <p>画像をクリックすると、色を採取できます</p>
   
-  <%= render partial: "partials/image_detail_itself", locals: {
+  <%= render partial: 'partials/image_detail_itself', locals: {
     image_file_name: nil,
     description: nil,
-    hex: "456789",
-    color_name: "beautiful",
-    r: 80,
-    g: 90,
-    b: 100,
-    h: 200,
-    s: 10,
-    v: 40,
-    dark_level: 46.88
+    hex: '000000',
+    color_name: '',
+    r: 0,
+    g: 0,
+    b: 0,
+    h: 0,
+    s: 0,
+    v: 0,
+    dark_level: 0
   } %>
+  
+  <!-- ここ何とかする -->
+  <div id="similar_hattoris_container"></div>
 </div>

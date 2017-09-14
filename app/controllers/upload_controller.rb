@@ -1,10 +1,11 @@
 class UploadController < ApplicationController
   include Color
-  include NameThatColor
+  include SimilarHattoris
   
   def index
   end
   
+=begin
   def get_color_info
     rgb = [params[:r].to_i, params[:g].to_i, params[:b].to_i]
     hsv = rgb2hsv(rgb)
@@ -21,8 +22,14 @@ class UploadController < ApplicationController
       dark_level: dark_level(rgb)
     }, nothing: true
   end
+=end
   
-  def get_similar_hattoris
-    render nothing: true
+  def show_similar_hattoris
+    rgb = params[:rgb].map {|element| element.to_i}
+    
+    # the return value contains both hattori object and the similarity
+    @similar_color_hattoris = similar_color_hattoris(nil, rgb)
+    @similar_dark_level_hattoris = similar_dark_level_hattoris(nil, dark_level(rgb))
   end
+  
 end

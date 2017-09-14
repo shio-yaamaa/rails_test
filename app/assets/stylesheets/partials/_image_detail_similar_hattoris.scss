@@ -1,4 +1,5 @@
 #similar_hattoris {
+  margin-top: 10px;
   border-top: solid 1px $divider_color;
   
   p {
@@ -22,8 +23,15 @@
       
       div {
         width: 100px;
-        height: 20px;
+        height: 30px;
         margin-top: 5px;
+        
+        p {
+          margin: 0;
+          font-size: 0.8rem;
+          text-align: center;
+          line-height: 30px; // depends on the parent div height
+        }
       }
     }
   }

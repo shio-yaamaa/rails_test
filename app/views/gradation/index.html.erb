@@ -1,0 +1,11 @@
+<div id="gradation_container">
+  <% @hattoris.each do |hattori| %>
+    <div id="gradation_element">
+      <div style="background-color: #<%= hattori.hex %>">
+        <p><%= hattori.japanese_color[:name] %></p>
+        <p>#<%= hattori.hex.upcase %></p>
+      </div>
+      <%= image_tag "#{hattori.id}.png" %>
+    </div>
+  <% end %>
+</div>

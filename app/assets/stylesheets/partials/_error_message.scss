@@ -1,0 +1,9 @@
+.error_message {
+  padding: 10px;
+  
+  color: $error_text;
+  
+  background-color: $error_background;
+  border: solid 2px $error_text;
+  border-radius: 3px;
+}

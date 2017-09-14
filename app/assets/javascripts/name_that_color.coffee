@@ -5,11 +5,10 @@ getColorNames = (func) ->
   if colorNames
     return if func != null then func() else null
   inAjax = true
-  $.getJSON('color_names/get_color_names')
+  $.getJSON('japanese_colors/get_japanese_colors') #('color_names/get_color_names')
     .done (data) ->
       inAjax = false
       func() if func != null
-      console.log data
       colorNames = data
 
 @nameThatColor = (rgb) ->
@@ -37,6 +36,6 @@ getColorNames = (func) ->
         candidateDifference = difference
     
     return candidate
-    # 日本語つけるなら一致したときとルビーの方もね
+    # 日本語訳つけるなら一致したときとRubyの方もね
 
 getColorNames(null)

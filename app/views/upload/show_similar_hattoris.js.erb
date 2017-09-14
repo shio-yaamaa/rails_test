@@ -1,0 +1,6 @@
+$("#similar_hattoris_container")
+  .html("<%= escape_javascript(
+    render 'partials/image_detail_similar_hattoris',
+    similar_color_hattoris: @similar_color_hattoris,
+    similar_dark_level_hattoris: @similar_dark_level_hattoris
+  ) %>");

@@ -4,7 +4,7 @@
 
 <%= render partial: "partials/image_detail_itself", locals: {
   image_file_name: @hattori.id.to_s,
-  description: @hattori.description,
+  description: br(@hattori.description),
   hex: @hattori.hex,
   color_name: @hattori.color_name,
   r: @hattori.r,

@@ -1,10 +1,14 @@
 #upload_area {
   width: 60%;
-  padding: 50px 0;
+  padding: 0; // todo: 20px 0;
   margin: auto;
   text-align: center;
   
-  border: dashed 3px $main_color;
+  & > * { // todo: delete
+    display: inline-block;
+  }
+  
+  // todo: border: dashed 3px $main_color;
   
   &.dragover {
     background-color: $main_color_tint;
@@ -13,16 +17,26 @@
   label {
     @include button(true);
     display: inline-block;
-    cursor: pointer;
     
     input {
       display: none;
     }
   }
+  
+  button {
+    @include button(true);
+  }
+  
+  #upload_validate_error {
+    display: none;
+    width: 90%;
+    margin: 30px auto 0;
+  }
 }
 
 #uploaded_image_detail {
   display: none;
+  margin-top: 2rem;
   
   canvas {
     box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.3);

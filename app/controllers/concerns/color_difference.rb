@@ -6,7 +6,11 @@ module ColorDifference
   end
   
   def rgb2lab(rgb)
-    xyz2lab(scale_xyz(rgb2xyz(scale_rgb(to_linear(rgb)))))
+    xyz2lab(scale_xyz(rgb2xyz(to_linear(scale_rgb(rgb)))))
+  end
+  
+  def scale_rgb(rgb)
+    rgb.map {|element| element / 255.0}
   end
   
   def to_linear(rgb)
@@ -19,19 +23,15 @@ module ColorDifference
     end
   end
   
-  def scale_rgb(rgb)
-    rgb.map {|element| element / 255.0}
-  end
-  
   def rgb2xyz(rgb)
     m = [
       [0.4124, 0.3576, 0.1805],
       [0.2126, 0.7152, 0.0722],
-      [0.0193, 0.0192, 0.9505]
+      [0.0193, 0.1192, 0.9505]
     ]
     
     m.map do |m_row|
-      m_row.zip(rgb).inject(0) {|sum, (m_element, rgb_element)| sum + m_element * rgb_element}
+      m_row.zip(rgb).inject(0) {|sum, (m_element, rgb_element)| sum + m_element * rgb_element * 100}
     end
   end
   
@@ -54,6 +54,6 @@ module ColorDifference
   def lab_distance(lab1, lab2)
     lab1.zip(lab2).inject(0) do |sum, (lab1_element, lab2_element)|
       sum + (lab1_element - lab2_element) ** 2
-    end
+    end ** (1/2.0)
   end
 end

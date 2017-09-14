@@ -1,0 +1,26 @@
+#gradation_container {
+  display: flex;
+  flex-wrap: wrap;
+  
+  #gradation_element {
+    padding-top: 10px;
+    
+    div {
+      width: 120px;
+      //height: 30px;
+      padding: 8px;
+    }
+    p {
+      margin: 3px;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    img {
+      display: block;
+      width: 120px;
+      height: 120px;
+      margin-top: 0px;
+    }
+  }
+}

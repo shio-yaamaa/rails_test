@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   resources :hattoris, only: [:index, :show]
   get 'upload' => 'upload#index'
   get 'compare' => 'compare#index'
+  get 'gradation' => 'gradation#index'
   
-  get 'upload/get_color_info'
-  get 'upload/get_similar_hattoris'
   get 'color_names/get_color_names'
+  get 'japanese_colors/get_japanese_colors'
+  get 'upload/show_similar_hattoris'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -44,7 +44,7 @@ module Color
     [h, s, v]
   end
   
-  # used only by name_that_color!
+  # used only by name_that_color and japanese_color!
   def rgb2hsl(rgb)
     rgb = rgb.map {|element| element.to_f / 255}
     min = rgb.min
@@ -65,6 +65,8 @@ module Color
       if max == rgb[2] && max != rgb[0] then h += 4 + (rgb[0] - rgb[1]) / delta end
       h /= 6
     end
+    
+    h += 1 if h < 0 # not confident
   
     return [(h * 255).to_i, (s * 255).to_i, (l * 255).to_i]
   end
