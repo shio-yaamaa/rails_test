@@ -162,7 +162,7 @@ getRgbAtPixel = (canvas, pixelsData, x, y) ->
 updateColorInfo = (hex, color_name, rgb, hsv, dark_level) ->
   colorSample.css 'background-color', "##{hex}"
   colorSampleText.children().eq(0).text "##{hex.toUpperCase()}"
-  colorSampleText.children().eq(1).text "#{color_name.name}" # todo: 「色名: 」はとりあえず外しただけ、あとでつける
+  colorSampleText.children().eq(1).text color_name.name # todo: 「色名: 」はとりあえず外しただけ、あとでつける
   rgbhsv = rgb.concat hsv
   COLOR_ELEMENTS.forEach((element, index) ->
     colorTable

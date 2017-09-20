@@ -13,7 +13,7 @@ else
   
   hattori = Hattori.find(params[:id])
   
-  hattori.update(
+  p hattori.update(
     hex: params[:hex],
     r: rgb[0],
     g: rgb[1],
