@@ -11,6 +11,10 @@ colorSample = if colorSample? then colorSample else null
 colorSampleText = if colorSampleText? then colorSampleText else null
 colorTable = if colorTable? then colorTable else null
 
+similarHattorisContainer = if similarHattorisContainer? then similarHattorisContainer else null
+similarColorHattorisContainer = if similarColorHattorisContainer? then similarColorHattorisContainer else null
+similarDarkLevelHattorisContainer = if similarDarkLevelHattorisContainer? then similarDarkLevelHattorisContainer else null
+
 colorPickerImageSrc = if colorPickerImageSrc? then colorPickerImageSrc else null
 uploadedImage = if uploadedImage? then uploadedImage else new Image()
 drawImageParameters = if drawImageParameters? then drawImageParameters else null
@@ -46,6 +50,10 @@ ready ->
   colorSample = colorInfo.find('#color_sample')
   colorSampleText = colorInfo.find('#color_sample_text')
   colorTable = colorInfo.find('table')
+  
+  similarHattorisContainer = $('#similar_hattoris')
+  similarColorHattorisContainer = $('#similar_color_hattoris')
+  similarDarkLevelHattorisContainer = $('#similar_dark_level_hattoris')
   
   uploadedImage.onload = ->
     # show detail
@@ -109,9 +117,10 @@ ready ->
       nameThatColor(rgbAtPixel),
       rgbAtPixel,
       rgb2hsv(rgbAtPixel),
-      darkLevel(rgbAtPixel)
+      rgb2darkLevel(rgbAtPixel)
     )
-    $.get('upload/show_similar_hattoris', {rgb: rgbAtPixel})
+    similarHattorisContainer.css 'display', 'block'
+    updateSimilarHattoris rgbAtPixel
       
 validateFiles = (files) ->
   if !files || files.length == 0
@@ -173,8 +182,22 @@ updateColorInfo = (hex, color_name, rgb, hsv, dark_level) ->
       .text rgbhsv[index]
   )
   colorTable.find('#dark_level_bar')
-    .css('width', "#{dark_level}%")
+    .css('width', "#{dark_level * 100}%")
     .parent().next().text dark_level.toFixed(2)
+
+updateSimilarHattoris = (rgb) ->
+  updateSimilarHattori = (individualContainer, hattori, similarity) ->
+    individualContainer.children('a').attr('href', '/hattoris/' + hattori.id)
+    individualContainer.children('a').children('img').attr('src', 'assets/' + hattori.id + '.png')
+    individualContainer.children('div').css('background-color', '#' + hattori.hex)
+    individualContainer.children('div').children('p')
+      .text((similarity * 100).toFixed(2) + '%')
+      .css('color', if hattori.dark_level > 0.55 then 'white' else 'black')
+  similarHattoris = getSimilarHattoris rgb
+  for similarColorHattori, index in similarHattoris.similarColorHattoris
+    updateSimilarHattori similarColorHattorisContainer.children().eq(index), similarColorHattori, similarColorHattori.color_similarity
+  for similarDarkLevelHattori, index in similarHattoris.similarDarkLevelHattoris
+    updateSimilarHattori similarDarkLevelHattorisContainer.children().eq(index), similarDarkLevelHattori, similarDarkLevelHattori.dark_level_similarity
 
 ripple = (context, x, y, radius, opacity) ->
   # show the image

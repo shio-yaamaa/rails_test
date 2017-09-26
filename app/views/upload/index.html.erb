@@ -27,6 +27,8 @@
     dark_level: 0
   } %>
   
-  <!-- ここ何とかする -->
-  <div id="similar_hattoris_container"></div>
+  <%= render partial: 'partials/image_detail_similar_hattoris', locals: {
+    similar_color_hattoris: nil,
+    similar_dark_level_hattoris: nil 
+  } %>
 </div>

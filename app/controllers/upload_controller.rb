@@ -24,12 +24,31 @@ class UploadController < ApplicationController
   end
 =end
   
+  # todo: I can delete this method if the function in coffee succeeds
   def show_similar_hattoris
     rgb = params[:rgb].map {|element| element.to_i}
     
     # the return value contains both hattori object and the similarity
     @similar_color_hattoris = similar_color_hattoris(nil, rgb)
     @similar_dark_level_hattoris = similar_dark_level_hattoris(nil, dark_level(rgb))
+  end
+  
+  # send all the Hattori data as JSON to compare their colors in coffee
+  def get_hattoris
+    data = []
+    
+    Category.find(2).hattoris.each do |hattori| # todo: 便宜上アニメだけだが、全てならHattori.all.each
+      data << {
+        id: hattori.id,
+        hex: hattori.hex,
+        dark_level: hattori.dark_level,
+        l_star: hattori.l_star,
+        a_star: hattori.a_star,
+        b_star: hattori.b_star
+      }
+    end
+    
+    render json: data, nothing: true
   end
   
 end

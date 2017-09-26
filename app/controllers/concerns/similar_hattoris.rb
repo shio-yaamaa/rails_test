@@ -4,7 +4,7 @@ module SimilarHattoris
   include ColorDifference
   
   MAX_COLOR_DISTANCE = 258.69303202784573
-  MAX_DARK_LEVEL_DIFFERENCE = 100
+  MAX_DARK_LEVEL_DIFFERENCE = 1
   
   def color_similarity(distance)
     1 - (distance / MAX_COLOR_DISTANCE)
@@ -16,11 +16,11 @@ module SimilarHattoris
 
   # returns [[hattori: Hattori Object, similarity: int], ...]
   def similar_color_hattoris(id, rgb)
-    # Todo: I don't have to convert from rgb to lab of the color of clicked pixel again and again
+    lab = rgb2lab(rgb)
     color_differences = [] # ascend {id: int, value: int}
     Category.find(2).hattoris.each do |hattori| # todo: 便宜上アニメだけだが、全てならHattori.all.each
       if hattori.id != id
-        difference = color_difference([hattori.r, hattori.g, hattori.b], rgb)
+        difference = lab_distance(lab, [hattori.l_star, hattori.a_star, hattori.b_star])
         # Todo: maybe just recording all and sorting is enough. check it after adding all the data
         insert_pos = 0
         color_differences.each do |color_difference|

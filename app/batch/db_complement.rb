@@ -1,4 +1,5 @@
 include Color
+include ColorDifference
 
 Hattori.all.each do |hattori|
   
@@ -17,6 +18,12 @@ Hattori.all.each do |hattori|
     hattori.h = h
     hattori.s = s
     hattori.v = v
+    hattori.save
+  end
+  
+  if hattori.l_star == nil
+    p "id:#{hattori.id}のlabを補完します"
+    hattori.l_star, hattori.a_star, hattori.b_star = rgb2lab([hattori.r, hattori.g, hattori.b])
     hattori.save
   end
 

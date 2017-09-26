@@ -49,9 +49,9 @@
         <th>色黒度</th>
         <td>
           <div class="bar_background"></div>
-          <div class="bar" id="dark_level_bar" style="width: <%= dark_level %>%;"></div>
+          <div class="bar" id="dark_level_bar" style="width: <%= dark_level * 100 %>%;"></div>
         </td>
-        <td><%= dark_level.round(2) %></td>
+        <td><%= (dark_level * 100).round(2) %></td>
       </tr>
     </table>
     

@@ -72,10 +72,10 @@ module Color
   end
   
   def dark_level(rgb)
-    100 - 100 * rgb.zip([0.299, 0.587, 0.114]).inject(0) {|sum, element|
+    1 - rgb.zip([0.299, 0.587, 0.114]).inject(0) {|sum, element|
       sum + element.inject(:*)
     } / 255
   end
-  # (100 - 100 * (0.299 * R + 0.587 * G + 0.114 * B) / 255)
+  # 1 - (0.299 * R + 0.587 * G + 0.114 * B) / 255
 
 end

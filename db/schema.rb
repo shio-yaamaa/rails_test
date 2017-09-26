@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710105931) do
+ActiveRecord::Schema.define(version: 20170923062121) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -41,6 +41,9 @@ ActiveRecord::Schema.define(version: 20170710105931) do
     t.integer  "h"
     t.integer  "s"
     t.integer  "v"
+    t.float    "l_star"
+    t.float    "a_star"
+    t.float    "b_star"
     t.float    "dark_level"
   end
 

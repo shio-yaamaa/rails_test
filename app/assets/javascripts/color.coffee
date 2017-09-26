@@ -1,3 +1,10 @@
+MatrixForXyz = [
+  [0.4124, 0.3576, 0.1805],
+  [0.2126, 0.7152, 0.0722],
+  [0.0193, 0.1192, 0.9505]
+]
+ScaleXyz = [95.047, 100.000, 108.883]
+
 @hex2rgb = (hex) ->
   rgb = []
   for i in [0...3]
@@ -58,12 +65,22 @@
     if max == rgb[2] && max != rgb[0] then h += 4 + (rgb[0] - rgb[1]) / delta
     h /= 6
 
-  return [parseInt(h * 255), parseInt(s * 255), parseInt(l * 255)]
+  [parseInt(h * 255), parseInt(s * 255), parseInt(l * 255)]
 
-@darkLevel = (rgb) ->
+@rgb2lab = (rgb) ->
+  rgb = rgb.map (element) -> element / 255
+  linear_rgb = rgb.map (element) -> if element <= 0.04045 then element / 12.92 else ((element + 0.055) / 1.055) ** 2.4
+  xyz = MatrixForXyz.map (row, index) -> (row[0] * linear_rgb[0] + row[1] * linear_rgb[1] + row[2] * linear_rgb[2]) * 100 / ScaleXyz[index]
+  f = (t) -> if t > 0.0089 then t ** (1.0 / 3) else ((29.0 / 3) ** 3 * t + 16) / 116
+  [116 * f(xyz[1]) - 16, 500 * (f(xyz[0]) - f(xyz[1])), 200 * (f(xyz[1]) - f(xyz[2]))]
+
+@colorDistance = (lab1, lab2) ->
+  Math.sqrt(lab1.reduce ((previous, current, index) -> previous + (current - lab2[index]) ** 2), 0)
+
+@rgb2darkLevel = (rgb) ->
   coefficients = [0.299, 0.587, 0.114]
   result = 0
   rgb.forEach (element, index) ->
     result += element * coefficients[index]
-  100 - 100 * result / 255
-# (100 - 100 * (0.299 * R + 0.587 * G + 0.114 * B) / 255)
+  1 - result / 255
+# 1 - (0.299 * R + 0.587 * G + 0.114 * B) / 255

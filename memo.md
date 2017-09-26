@@ -1,1 +1,3 @@
-HattoriデータベースのHSVって使う機会ある？代わりにLab入れた方が有益じゃない？
+データベースとか内部の処理では、dark_levelは1maxにすべきだと思う。
+
+それと、javascriptで求めるsimilar color hattorisが絶対違うから調査。

@@ -1,17 +1,11 @@
-<% if not similar_color_hattoris then %>
-  <% similar_color_hattoris = create_empty_similar_hattoris %>
-  <% similar_dark_level_hattoris = similar_color_hattoris %>
-<% end %>
-
 <div id="similar_hattoris">
   
   <p class="sub_title">近似色の服部平次</p>
   
-  <div id="similar_color_hattoris">
+  <div>
     <% similar_color_hattoris.each do |similar_color_hattori| %>
       <div>
-        <%= link_to image_tag(similar_color_hattori[:hattori].id ? (similar_color_hattori[:hattori].id.to_s + ".png") : "//:0", {border: '0'}),
-          similar_color_hattori[:hattori].id ? ("/hattoris/" + similar_color_hattori[:hattori].id.to_s) : "/" %>
+        <%= link_to image_tag(similar_color_hattori[:hattori].id.to_s + ".png", {border: '0'}), "/hattoris/" + similar_color_hattori[:hattori].id.to_s %>
         <div style="background-color: #<%= similar_color_hattori[:hattori].hex %>;">
           <p style="color: <%= color_distinct_from_background(similar_color_hattori[:hattori].dark_level)%>;">
             <%= ((similar_color_hattori[:similarity] * 100).round(2)).to_s + "%" %>
@@ -23,11 +17,10 @@
   
   <p class="sub_title">近似色黒度の服部平次</p>
   
-  <div id="similar_dark_level_hattoris">
+  <div>
     <% similar_dark_level_hattoris.each do |similar_dark_level_hattori| %>
       <div>
-        <%= link_to image_tag(similar_dark_level_hattori[:hattori].id ? (similar_dark_level_hattori[:hattori].id.to_s + ".png") : "//:0", {border: '0'}),
-          similar_dark_level_hattori[:hattori].id ? ("/hattoris/" + similar_dark_level_hattori[:hattori].id.to_s) : "/" %>
+        <%= link_to image_tag(similar_dark_level_hattori[:hattori].id.to_s + ".png", {border: '0'}), "/hattoris/" + similar_dark_level_hattori[:hattori].id.to_s %>
         <div style="background-color: #<%= similar_dark_level_hattori[:hattori].hex %>;">
           <p style="color: <%= color_distinct_from_background(similar_dark_level_hattori[:hattori].dark_level)%>;">
             <%= ((similar_dark_level_hattori[:similarity] * 100).round(2)).to_s + "%" %>
