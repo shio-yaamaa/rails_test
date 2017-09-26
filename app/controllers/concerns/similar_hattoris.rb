@@ -1,7 +1,7 @@
 module SimilarHattoris
   extend ActiveSupport::Concern
   
-  include ColorDifference
+  include Color
   
   MAX_COLOR_DISTANCE = 258.69303202784573
   MAX_DARK_LEVEL_DIFFERENCE = 1

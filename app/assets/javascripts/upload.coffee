@@ -183,7 +183,7 @@ updateColorInfo = (hex, color_name, rgb, hsv, dark_level) ->
   )
   colorTable.find('#dark_level_bar')
     .css('width', "#{dark_level * 100}%")
-    .parent().next().text dark_level.toFixed(2)
+    .parent().next().text (dark_level * 100).toFixed(2)
 
 updateSimilarHattoris = (rgb) ->
   updateSimilarHattori = (individualContainer, hattori, similarity) ->

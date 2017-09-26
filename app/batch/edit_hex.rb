@@ -2,7 +2,6 @@ require 'optparse'
 require 'active_support'
 require 'active_support/core_ext'
 include Color
-include ColorDifference
 
 params = ARGV.getopts("", "id:", "hex:").with_indifferent_access
 

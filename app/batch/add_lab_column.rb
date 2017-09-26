@@ -1,4 +1,4 @@
-include ColorDifference
+include Color
 
 Hattori.all.each do |hattori|
   lab = rgb2lab([hattori.r, hattori.g, hattori.b])

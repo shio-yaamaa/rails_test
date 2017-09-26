@@ -1,5 +1,4 @@
 include Color
-include ColorDifference
 
 Hattori.all.each do |hattori|
   

@@ -1,9 +1,9 @@
-MatrixForXyz = [
+MATRIX_FOR_XYZ = [
   [0.4124, 0.3576, 0.1805],
   [0.2126, 0.7152, 0.0722],
   [0.0193, 0.1192, 0.9505]
 ]
-ScaleXyz = [95.047, 100.000, 108.883]
+SCALE_XYZ = [95.047, 100.000, 108.883]
 
 @hex2rgb = (hex) ->
   rgb = []
@@ -70,7 +70,7 @@ ScaleXyz = [95.047, 100.000, 108.883]
 @rgb2lab = (rgb) ->
   rgb = rgb.map (element) -> element / 255
   linear_rgb = rgb.map (element) -> if element <= 0.04045 then element / 12.92 else ((element + 0.055) / 1.055) ** 2.4
-  xyz = MatrixForXyz.map (row, index) -> (row[0] * linear_rgb[0] + row[1] * linear_rgb[1] + row[2] * linear_rgb[2]) * 100 / ScaleXyz[index]
+  xyz = MATRIX_FOR_XYZ.map (row, index) -> (row[0] * linear_rgb[0] + row[1] * linear_rgb[1] + row[2] * linear_rgb[2]) * 100 / SCALE_XYZ[index]
   f = (t) -> if t > 0.0089 then t ** (1.0 / 3) else ((29.0 / 3) ** 3 * t + 16) / 116
   [116 * f(xyz[1]) - 16, 500 * (f(xyz[0]) - f(xyz[1])), 200 * (f(xyz[1]) - f(xyz[2]))]
 
