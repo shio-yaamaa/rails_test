@@ -15,8 +15,7 @@ module SimilarHattoris
   end
 
   # returns [[hattori: Hattori Object, similarity: int], ...]
-  def similar_color_hattoris(id, rgb)
-    lab = rgb2lab(rgb)
+  def similar_color_hattoris(id, lab)
     color_differences = [] # ascend {id: int, value: int}
     Category.find(2).hattoris.each do |hattori| # todo: 便宜上アニメだけだが、全てならHattori.all.each
       if hattori.id != id

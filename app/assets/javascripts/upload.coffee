@@ -192,7 +192,7 @@ updateSimilarHattoris = (rgb) ->
     individualContainer.children('div').css('background-color', '#' + hattori.hex)
     individualContainer.children('div').children('p')
       .text((similarity * 100).toFixed(2) + '%')
-      .css('color', if hattori.dark_level > 0.55 then 'white' else 'black')
+      .css('color', if hattori.dark_level > 0.5 then 'white' else 'black')
   similarHattoris = getSimilarHattoris rgb
   for similarColorHattori, index in similarHattoris.similarColorHattoris
     updateSimilarHattori similarColorHattorisContainer.children().eq(index), similarColorHattori, similarColorHattori.color_similarity

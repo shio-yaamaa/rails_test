@@ -22,7 +22,7 @@ class HattorisController < ApplicationController
     rgb = [@hattori.r, @hattori.g, @hattori.b]
     
     @hattori.color_name = name_that_color(rgb)
-    @hattori.similar_color_hattoris = similar_color_hattoris(@hattori.id, rgb)
+    @hattori.similar_color_hattoris = similar_color_hattoris(@hattori.id, [@hattori.l_star, @hattori.a_star, @hattori.b_star])
     @hattori.similar_dark_level_hattoris = similar_dark_level_hattoris(@hattori.id, @hattori.dark_level)
   end
   

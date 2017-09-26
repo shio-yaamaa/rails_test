@@ -1,3 +1,0 @@
-データベースとか内部の処理では、dark_levelは1maxにすべきだと思う。
-
-それと、javascriptで求めるsimilar color hattorisが絶対違うから調査。

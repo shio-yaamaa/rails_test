@@ -1,15 +1,13 @@
 colorNames = if colorNames? then colorNames else undefined
-inAjax = if inAjax? then inAjax else false
 
+# func: executed once colorNames is ready
 getColorNames = (func) ->
   if colorNames
     return if func != null then func() else null
-  inAjax = true
   $.getJSON('japanese_colors/get_japanese_colors') #('color_names/get_color_names')
     .done (data) ->
-      inAjax = false
-      func() if func != null
       colorNames = data
+      func() if func != null
 
 @nameThatColor = (rgb) ->
   getColorNames ->
@@ -35,7 +33,7 @@ getColorNames = (func) ->
         candidate = colorName
         candidateDifference = difference
     
-    return candidate
+    candidate
     # 日本語訳つけるなら一致したときとRubyの方もね
 
-getColorNames(null)
+getColorNames null

@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   
   get 'color_names/get_color_names'
   get 'japanese_colors/get_japanese_colors'
-  #get 'upload/show_similar_hattoris'
   get 'upload/get_hattoris'
   
   # The priority is based upon order of creation: first created -> highest priority.

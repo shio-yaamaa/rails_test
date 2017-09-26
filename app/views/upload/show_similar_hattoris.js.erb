@@ -1,9 +1,0 @@
-<!-- たぶん無理なので消す -->
-@showSimilarHattoris = function() {
-  console.log("show similar hattoris");
-  $("#similar_hattoris_container").html("<%= escape_javascript(
-    render 'partials/image_detail_similar_hattoris',
-    similar_color_hattoris: [{hattori: {id: 0, hex: '000000', dark_level: 50}, similarity: 0.5}, {hattori: {id: 0, hex: '000000', dark_level: 50}, similarity: 0.5}, {hattori: {id: 0, hex: '000000', dark_level: 50}, similarity: 0.5}, {hattori: {id: 0, hex: '000000', dark_level: 50}, similarity: 0.5}, {hattori: {id: 0, hex: '000000', dark_level: 50}, similarity: 0.5}],
-    similar_dark_level_hattoris: [{hattori: {id: 0, hex: '000000', dark_level: 50}, similarity: 0.5}, {hattori: {id: 0, hex: '000000', dark_level: 50}, similarity: 0.5}, {hattori: {id: 0, hex: '000000', dark_level: 50}, similarity: 0.5}, {hattori: {id: 0, hex: '000000', dark_level: 50}, similarity: 0.5}, {hattori: {id: 0, hex: '000000', dark_level: 50}, similarity: 0.5}]
-  ) %>");
-}
