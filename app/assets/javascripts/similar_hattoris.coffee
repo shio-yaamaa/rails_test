@@ -21,21 +21,19 @@ getHattoris = (func) ->
   getHattoris ->
     lab = rgb2lab rgb
     darkLevel = rgb2darkLevel rgb
-    
+
     for hattori in hattoris
       hattori.color_similarity = 1 - colorDistance(lab, [hattori.l_star, hattori.a_star, hattori.b_star]) / MAX_COLOR_DISTANCE
       hattori.dark_level_similarity = 1 - (Math.abs(darkLevel - hattori.dark_level)) / MAX_DARK_LEVEL_DIFFERENCE
-    
-    sortedHattorisByColor = hattoris.slice().sort((a, b) ->
-      b.color_similarity - a.color_similarity
-    )
-    sortedHattorisByDarkLevel = hattoris.slice().sort((a, b) ->
-      b.dark_level_similarity - a.dark_level_similarity
-    )
-    
+
+    hattorisSortedByColor = hattoris.slice()
+      .sort((a, b) -> b.color_similarity - a.color_similarity)
+    hattorisSortedByDarkLevel = hattoris.slice()
+      .sort((a, b) -> b.dark_level_similarity - a.dark_level_similarity)
+
     {
-      similarColorHattoris: sortedHattorisByColor.slice(0, 5),
-      similarDarkLevelHattoris: sortedHattorisByDarkLevel.slice(0, 5)
+      similarColorHattoris: hattorisSortedByColor.slice(0, 5),
+      similarDarkLevelHattoris: hattorisSortedByDarkLevel.slice(0, 5)
     }
 
 getHattoris null
