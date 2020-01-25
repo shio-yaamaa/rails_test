@@ -86,7 +86,7 @@ module Color
         ((element + 0.055) / 1.055) ** 2.4
       end
     end
-    xyz = m.map do |m_row|
+    xyz = @@MATRIX_FOR_XYZ.map do |m_row|
       m_row.zip(linear_rgb).inject(0) {|sum, (m_element, rgb_element)| sum + m_element * rgb_element * 100}
     end
     xyz = xyz.zip([95.047, 100.000, 108.883]).map {|xyz_element, n| xyz_element / n}
