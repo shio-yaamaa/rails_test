@@ -1,19 +1,33 @@
 @mixin button($focus) {
   padding: 10px;
-  
+
   background-color: white;
   border: none;
   border-radius: 2px;
   box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.5);
-  
+
 	cursor: pointer;
-	
+
 	@if $focus {
   	&:active {
   	  background-color: rgba(0, 0, 0, 0.12);
     }
     transition: background-color 0.1s;
 	}
+}
+
+@mixin input_field {
+  padding: 10px 5px;
+  border: solid 1px #AAA;
+  border-radius: 3px;
+}
+
+@mixin font_awesome_button {
+  padding: 10px;
+  font-family: FontAwesome;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 @mixin image_shadow {

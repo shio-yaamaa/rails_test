@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'japanese_colors/get_japanese_colors'
   get 'upload/get_hattoris'
   
+  get 'upload/url2base64'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

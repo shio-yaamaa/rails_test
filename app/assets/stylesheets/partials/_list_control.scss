@@ -6,16 +6,10 @@
   padding-bottom: 30px;
   
   input[type="text"] {
-    padding: 10px 5px;
-    border: solid 1px #AAA;
-    border-radius: 3px;
+    @include input_field;
   }
   
   input[type="submit"] {
-    padding: 10px;
-    font-family: FontAwesome;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+    @include font_awesome_button;
   }
 }

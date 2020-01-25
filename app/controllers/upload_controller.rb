@@ -1,4 +1,5 @@
 class UploadController < ApplicationController
+  require 'open-uri'
   include Color
   include SimilarHattoris
   
@@ -21,6 +22,15 @@ class UploadController < ApplicationController
     end
     
     render json: data, nothing: true
+  end
+  
+  def url2base64
+    begin
+      data = 'data:image/png;base64,' + Base64.strict_encode64(open(params[:url]).read)
+    rescue
+      data = nil
+    end
+    render json: {base64: data}, nothing: true
   end
   
 end

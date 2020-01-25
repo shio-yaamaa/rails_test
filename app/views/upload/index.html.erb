@@ -7,6 +7,10 @@
   </label>
   <p>　<!--または--></p>
   <%= button_tag 'カラーピッカーを使う', id: 'color_picker_button' %>
+  <div style="display: block; height: 1rem"></div><!-- todo: remove this -->
+  <%= text_field nil, nil, id: 'url_input_field', size: 50, placeholder: "URLを入力" %>
+  <i class="fa fa-times" id="url_delete_button" aria-hidden="true"></i>
+  <i class="fa fa-search" id="url_button" aria-hidden="true"></i>
   <div class="error_message" id="upload_validate_error"></div>
 </div>
 

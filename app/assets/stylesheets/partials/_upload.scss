@@ -1,5 +1,5 @@
 #upload_area {
-  width: 60%;
+  width: 100%; // todo: 60%;
   padding: 0; // todo: 20px 0;
   margin: auto;
   text-align: center;
@@ -25,6 +25,14 @@
   
   button {
     @include button(true);
+  }
+  
+  input[type="text"] {
+    @include input_field;
+  }
+  
+  i {
+    @include font_awesome_button;
   }
   
   #upload_validate_error {
